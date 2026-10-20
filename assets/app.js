@@ -3,6 +3,8 @@
 'use strict';
 var RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 window.SEER_RM = RM;
+/* Theme: dark default; light via html[data-theme="light"], persisted in localStorage ('seer-theme'), set pre-paint by an inline head script (also honours ?theme=light|dark) */
+window.seerTheme = function(){ return document.documentElement.getAttribute('data-theme')==='light' ? 'light' : 'dark'; };
 function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
 /* Number ticker: tween textContent between numeric values */
 window.tweenNumber = function(el, from, to, dur, fmt){
@@ -34,6 +36,16 @@ document.addEventListener('DOMContentLoaded',function(){
   var t=document.querySelector('.navtoggle'), n=document.querySelector('.navlinks');
   if(t&&n){ t.addEventListener('click',function(){ var open=n.classList.toggle('open'); t.setAttribute('aria-expanded',String(open)); }); }
   document.querySelectorAll('[data-wallet]').forEach(function(b){ b.addEventListener('click',function(){ toast('Demo only — no wallet connects in this design concept.'); }); });
+  /* Dark / light mode toggle (in shared nav) */
+  var tt=document.getElementById('themeToggle');
+  function syncThemeBtn(){ if(!tt) return; var light=window.seerTheme()==='light'; tt.setAttribute('aria-pressed',String(light)); tt.setAttribute('aria-label', light?'Switch to dark mode':'Switch to light mode'); }
+  if(tt){ tt.addEventListener('click',function(){
+    var light=window.seerTheme()==='light';
+    if(light){ document.documentElement.removeAttribute('data-theme'); } else { document.documentElement.setAttribute('data-theme','light'); }
+    try{ localStorage.setItem('seer-theme', light?'dark':'light'); }catch(e){}
+    syncThemeBtn();
+    window.dispatchEvent(new Event('seer-themechange'));
+  }); syncThemeBtn(); }
   /* Desktop-experience note, small screens only, dismissible */
   try{
     if(window.innerWidth<860 && !sessionStorage.getItem('seerDesktopNote')){
@@ -57,7 +69,7 @@ window.drawSpark=function(cv, data, opts){
   if(opts.fill){ c.beginPath(); data.forEach(function(v,i){ i?c.lineTo(X(i),Y(v)):c.moveTo(X(i),Y(v)); }); c.lineTo(X(data.length-1),h); c.lineTo(X(0),h); c.closePath(); c.fillStyle='rgba(125,51,255,.18)'; c.fill(); }
   c.beginPath(); data.forEach(function(v,i){ i?c.lineTo(X(i),Y(v)):c.moveTo(X(i),Y(v)); });
   c.strokeStyle= opts.dashed? '#8E8E99':'#7D33FF'; c.lineWidth=2; if(opts.dashed)c.setLineDash([5,4]); c.stroke(); c.setLineDash([]);
-  if(opts.dot){ var lx=X(data.length-1), ly=Y(data[data.length-1]); c.beginPath(); c.arc(lx,ly,3.2,0,7); c.fillStyle='#EFE9FC'; c.fill(); }
+  if(opts.dot){ var lx=X(data.length-1), ly=Y(data[data.length-1]); c.beginPath(); c.arc(lx,ly,3.2,0,7); c.fillStyle= window.seerTheme()==='light' ? '#6C2BD9' : '#EFE9FC'; c.fill(); }
 };
 /* Distribution wave strip (scalar markets): draws a bell-ish probability wave, no donut */
 window.drawWave=function(cv, peak){
