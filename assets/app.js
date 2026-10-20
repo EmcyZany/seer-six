@@ -34,6 +34,15 @@ document.addEventListener('DOMContentLoaded',function(){
   var t=document.querySelector('.navtoggle'), n=document.querySelector('.navlinks');
   if(t&&n){ t.addEventListener('click',function(){ var open=n.classList.toggle('open'); t.setAttribute('aria-expanded',String(open)); }); }
   document.querySelectorAll('[data-wallet]').forEach(function(b){ b.addEventListener('click',function(){ toast('Demo only — no wallet connects in this design concept.'); }); });
+  /* Desktop-experience note, small screens only, dismissible */
+  try{
+    if(window.innerWidth<860 && !sessionStorage.getItem('seerDesktopNote')){
+      var note=document.createElement('div'); note.className='desktopnote'; note.setAttribute('role','note');
+      note.innerHTML='Best experienced on desktop — for the full interactive experience, open this demo on a computer. You can also explore the mobile version.<button type="button" aria-label="Dismiss note">✕</button>';
+      note.querySelector('button').addEventListener('click',function(){ note.remove(); try{sessionStorage.setItem('seerDesktopNote','1');}catch(e){} });
+      document.body.insertBefore(note, document.body.firstChild);
+    }
+  }catch(e){}
 });
 /* Toast */
 window.toast=function(msg){ var t=document.querySelector('.toast'); if(!t){ t=document.createElement('div'); t.className='toast'; t.setAttribute('role','status'); document.body.appendChild(t);} t.textContent=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove('show');},2400); };
