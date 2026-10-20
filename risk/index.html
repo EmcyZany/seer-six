@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Risk Pricing — Protocol Risk, Compared — Seer · One Signal</title><meta name="description" content="One Signal — a design concept for Seer's six interfaces in the Electric Foundation system.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/style.css"></head>
+<body>
+<header class="topnav"><div class="wrap">
+<a class="brand" href="../index.html"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><path fill="#7D33FF" d="M20 2 L38 20 L20 38 L13.5 31.5 L25.5 20 L13.5 8.5 Z"/><path fill="#EFE9FC" d="M20 2 L2 20 L20 38 L26.5 31.5 L14.5 20 L26.5 8.5 Z" opacity=".92"/><rect x="17.6" y="11" width="4.8" height="4.8" transform="rotate(45 20 13.4)" fill="#141223"/><rect x="17.6" y="24.2" width="4.8" height="4.8" transform="rotate(45 20 26.6)" fill="#141223"/></svg><span>seer</span></a>
+<button class="navtoggle" aria-expanded="false" aria-controls="mainnav">Menu</button>
+<nav class="navlinks" id="mainnav" aria-label="Seer interfaces"><a href="../index.html">Home</a><a href="../app/">App</a><a href="../deep/">Deep</a><a href="../futarchy/">Futarchy</a><a href="../opportunity/">Opportunity</a><a href="../risk/" aria-current="page">Risk</a></nav>
+<button class="btn sm wallet" data-wallet type="button">Connect Wallet</button>
+</div></header>
+
+<section style="padding-top:34px"><div class="wrap">
+<p class="kicker">Risk Pricing · Market-implied risk</p>
+<h1 style="font-size:clamp(1.8rem,4vw,2.7rem)"><span id="productName">Risk Pricing</span> <span class="badge dark" title="This product is being renamed in a sister design bounty">Name provisional</span></h1>
+<p class="mut" style="max-width:66ch">Market estimates of risk across protocols, compared side by side — so someone assessing DeFi exposure reads a field of estimates, instead of interpreting a single yes-or-no price in isolation. The product name above is a swappable label: it is being renamed, and this design treats it that way.</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0">
+<span class="small mut">Period:</span>
+<div class="toggle" role="group" aria-label="Select quarter">
+<button type="button" id="q3Btn" aria-pressed="true">Q3 2026 · Ended</button>
+<button type="button" id="q4Btn" aria-pressed="false">Q4 2026 · Preview</button></div>
+<span class="mut small" id="periodNote">Trading ran until 30 Sep 2026, 23:59 UTC · Status: Ended</span></div>
+<p class="small mut" style="max-width:70ch">The market question: <i>"What is the yearly Probability of Default (PD) for the following DeFi protocols during this quarter?"</i> Figures below are sample estimates in the live product's shape.</p>
+<div class="grid" style="grid-template-columns:1fr 300px;gap:16px;align-items:start" id="riskGrid">
+<div class="card" style="padding:6px 6px 0;overflow-x:auto"><table aria-label="Probability of default by protocol" id="pdTable">
+<thead><tr><th class="sortable" data-sort="name">Protocol ⇕</th><th class="num sortable" data-sort="pd">Market-implied PD % / yr ⇕</th><th class="num">Change vs prior qtr</th><th class="num">Gauge</th></tr></thead>
+<tbody id="pdBody"></tbody></table>
+<p class="tiny mut" style="padding:10px 12px">Select a row to inspect its gauge. Estimates settle against the quarter's outcome; data updates within 24h in the live product.</p></div>
+<div class="card" style="text-align:center"><p class="tiny mut">Selected protocol</p><h3 id="gaugeName">—</h3>
+<svg width="190" height="120" viewBox="0 0 190 120" role="img" aria-label="Risk gauge">
+<path d="M20 105 A75 75 0 0 1 170 105" fill="none" stroke="#5C5C66" stroke-width="13" stroke-linecap="round"/>
+<path id="gaugeArc" d="M20 105 A75 75 0 0 1 170 105" fill="none" stroke="#7D33FF" stroke-width="13" stroke-linecap="round" style="transition:stroke-dashoffset .5s ease"/>
+</svg>
+<p class="mono" style="font-size:1.9rem;margin:0"><span id="gaugeVal">0.0</span>%</p>
+<p class="mut small">Market-implied yearly probability of default</p></div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+<label class="btn ghost sm" for="riskCsv" style="cursor:pointer">Upload CSV predictions</label>
+<input type="file" id="riskCsv" accept=".csv,text/csv" style="position:absolute;left:-9999px" aria-label="Upload a CSV of PD estimates">
+<button class="btn ghost sm" id="riskCsvOut" type="button">Download CSV</button>
+<span class="mut small">Advanced: trade specific outcome tokens in the Seer App · Secured by Kleros</span></div>
+<div class="card" style="margin-top:16px"><h3>Why a field of estimates beats a single price</h3>
+<p class="mut" style="margin:0">A lone yes/no price hides the shape of risk. A comparison table shows which protocols the market prices as fragile, which as resilient, and how those estimates move between quarters — the comparison <i>is</i> the product. That is also why this surface stays calm: no looping motion, no theatrics, just estimates you can audit.</p></div>
+</div></section>
+<footer class="site"><div class="wrap">
+<div><div class="brand" style="font-size:1.1rem"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><path fill="#7D33FF" d="M20 2 L38 20 L20 38 L13.5 31.5 L25.5 20 L13.5 8.5 Z"/><path fill="#EFE9FC" d="M20 2 L2 20 L20 38 L26.5 31.5 L14.5 20 L26.5 8.5 Z" opacity=".92"/><rect x="17.6" y="11" width="4.8" height="4.8" transform="rotate(45 20 13.4)" fill="#141223"/><rect x="17.6" y="24.2" width="4.8" height="4.8" transform="rotate(45 20 26.6)" fill="#141223"/></svg><span>seer</span></div>
+<p class="mut small" style="max-width:38ch;margin-top:10px">One Signal — one protocol, six surfaces. Every price a signal, every decision human.</p></div>
+<nav aria-label="Interfaces"><a href="../index.html">Home</a><a href="../app/">App</a><a href="../deep/">Deep</a><a href="../futarchy/">Futarchy</a><a href="../opportunity/">Opportunity</a><a href="../risk/">Risk</a></nav>
+<p class="mut tiny">Design concept for Seer — Electric Foundation system · Sample data for demonstration</p>
+</div></footer>
+<div class="toast" role="status" aria-live="polite"></div>
+<script src="../assets/app.js"></script>
+<script>
+var DATA={
+ Q3:{note:'Trading ran until 30 Sep 2026, 23:59 UTC · Status: Ended', rows:[['Aave',1.8,-0.2],['Compound',2.1,0.1],['Sky (Maker)',1.2,-0.1],['Uniswap',0.9,0.0],['Lido',1.5,0.2],['Curve',2.8,0.3],['Morpho',1.9,-0.3],['Euler',3.4,0.4]]},
+ Q4:{note:'Q4 2026 · Preview figures — market not yet open in the live product', rows:[['Aave',1.6,-0.2],['Compound',2.0,-0.1],['Sky (Maker)',1.1,-0.1],['Uniswap',0.9,0.0],['Lido',1.4,-0.1],['Curve',2.5,-0.3],['Morpho',1.7,-0.2],['Euler',3.0,-0.4]]}
+};
+var quarter='Q3', sortK=null, sortD=1, selected='Euler';
+var ARC=235.6; /* length of the 180-degree arc path approx */
+function gauge(pd){ var arc=document.getElementById('gaugeArc'); var frac=Math.min(1, pd/5); arc.style.strokeDasharray=ARC; arc.style.strokeDashoffset=ARC*(1-frac);
+ tweenNumber(document.getElementById('gaugeVal'), parseFloat(document.getElementById('gaugeVal').textContent)||0, pd, 500, function(v){return v.toFixed(1);}); }
+function render(){
+ var rows=DATA[quarter].rows.slice(); if(sortK){ rows.sort(function(a,b){ return (sortK==='name'? a[0].localeCompare(b[0]) : a[1]-b[1])*sortD; }); }
+ document.getElementById('pdBody').innerHTML=rows.map(function(r){
+   var frac=Math.min(1,r[1]/5), off=(ARC*(1-frac)).toFixed(1);
+   return '<tr data-proto="'+r[0]+'" style="cursor:pointer" tabindex="0" aria-label="Inspect '+r[0]+'"><td><b>'+r[0]+'</b></td>'
+   +'<td class="num" data-pd="'+r[0]+'">'+r[1].toFixed(1)+'</td>'
+   +'<td class="num">'+(r[2]>0?'+':'')+r[2].toFixed(1)+'</td>'
+   +'<td class="num"><svg width="72" height="42" viewBox="0 0 190 120" aria-hidden="true"><path d="M20 105 A75 75 0 0 1 170 105" fill="none" stroke="#5C5C66" stroke-width="16"/><path d="M20 105 A75 75 0 0 1 170 105" fill="none" stroke="#7D33FF" stroke-width="16" stroke-dasharray="'+ARC+'" stroke-dashoffset="'+off+'"/></svg></td></tr>'; }).join('');
+ document.querySelectorAll('[data-proto]').forEach(function(tr){ function pick(){ selected=tr.dataset.proto; document.getElementById('gaugeName').textContent=selected;
+   var row=DATA[quarter].rows.filter(function(r){return r[0]===selected;})[0]; gauge(row[1]); }
+  tr.addEventListener('click',pick); tr.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();} }); });
+ document.getElementById('gaugeName').textContent=selected;
+ var srow=DATA[quarter].rows.filter(function(r){return r[0]===selected;})[0]; if(srow) gauge(srow[1]);
+}
+function setQuarter(qstr){
+ if(qstr===quarter) return;
+ var tb=document.getElementById('pdTable'); tb.classList.add('fadeout');
+ setTimeout(function(){ quarter=qstr;
+   document.getElementById('q3Btn').setAttribute('aria-pressed',String(qstr==='Q3'));
+   document.getElementById('q4Btn').setAttribute('aria-pressed',String(qstr==='Q4'));
+   document.getElementById('periodNote').textContent=DATA[qstr].note;
+   /* tween each PD cell from old to new value */
+   var old={}; DATA[qstr==='Q3'?'Q4':'Q3'].rows.forEach(function(r){ old[r[0]]=r[1]; });
+   render();
+   document.querySelectorAll('[data-pd]').forEach(function(td){ var nm=td.dataset.pd; var row=DATA[qstr].rows.filter(function(r){return r[0]===nm;})[0];
+     tweenNumber(td, old[nm]||0, row[1], 500, function(v){return v.toFixed(1);}); });
+   tb.classList.remove('fadeout');
+ },200);
+}
+document.getElementById('q3Btn').addEventListener('click',function(){ setQuarter('Q3'); });
+document.getElementById('q4Btn').addEventListener('click',function(){ setQuarter('Q4'); });
+document.querySelectorAll('#pdTable [data-sort]').forEach(function(th){ th.addEventListener('click',function(){ var k=th.dataset.sort; if(sortK===k) sortD*=-1; else {sortK=k; sortD=1;} render(); }); });
+document.getElementById('riskCsvOut').addEventListener('click',function(){
+ downloadText('risk-pd-'+quarter.toLowerCase()+'.csv','protocol,pd_percent_year\n'+DATA[quarter].rows.map(function(r){return r[0]+','+r[1].toFixed(1);}).join('\n')); toast('CSV downloaded for '+quarter+'.'); });
+document.getElementById('riskCsv').addEventListener('change',function(e){
+ var f=e.target.files[0]; if(!f) return; var rd=new FileReader();
+ rd.onload=function(){ var n=0; String(rd.result).split(/\r?\n/).slice(1).forEach(function(line){ var p=line.split(','); if(p.length<2) return;
+   var nm=p[0].trim().toLowerCase(), v=parseFloat(p[1]); if(!isFinite(v)) return;
+   DATA[quarter].rows.forEach(function(r){ if(r[0].toLowerCase()===nm){ r[1]=Math.max(0,v); n++; } }); });
+  if(n){ render(); toast('CSV applied — '+n+' estimates updated for '+quarter+'.'); } else toast('No matching protocol names in that CSV.'); };
+ rd.readAsText(f); });
+render();
+</script>
+</body></html>

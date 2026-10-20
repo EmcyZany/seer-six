@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Futarchy — Conditional Markets — Seer · One Signal</title><meta name="description" content="One Signal — a design concept for Seer's six interfaces in the Electric Foundation system.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/style.css"></head>
+<body>
+<header class="topnav"><div class="wrap">
+<a class="brand" href="../index.html"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><path fill="#7D33FF" d="M20 2 L38 20 L20 38 L13.5 31.5 L25.5 20 L13.5 8.5 Z"/><path fill="#EFE9FC" d="M20 2 L2 20 L20 38 L26.5 31.5 L14.5 20 L26.5 8.5 Z" opacity=".92"/><rect x="17.6" y="11" width="4.8" height="4.8" transform="rotate(45 20 13.4)" fill="#141223"/><rect x="17.6" y="24.2" width="4.8" height="4.8" transform="rotate(45 20 26.6)" fill="#141223"/></svg><span>seer</span></a>
+<button class="navtoggle" aria-expanded="false" aria-controls="mainnav">Menu</button>
+<nav class="navlinks" id="mainnav" aria-label="Seer interfaces"><a href="../index.html">Home</a><a href="../app/">App</a><a href="../deep/">Deep</a><a href="../futarchy/" aria-current="page">Futarchy</a><a href="../opportunity/">Opportunity</a><a href="../risk/">Risk</a></nav>
+<button class="btn sm wallet" data-wallet type="button">Connect Wallet</button>
+</div></header>
+
+<section style="padding-top:34px"><div class="wrap">
+<p class="kicker">Futarchy · Conditional governance markets</p>
+<h1 style="font-size:clamp(1.8rem,4vw,2.7rem)">Markets inform. DAOs decide.</h1>
+<p class="mut" style="max-width:66ch">Futarchy prices the same measure of success twice: if a proposal passes, and if it does not. The difference — the impact — is the signal. It gives a DAO information to consider; it never makes the decision for it.</p>
+
+<div class="card" style="margin-top:22px">
+<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><span class="badge">Ethereum · Active milestone</span><span class="tiny mut">Closes in 3d 11h</span></div>
+<h2 style="margin-top:12px">What will the impact on ETH price be if EIP-8363 is Scheduled for Inclusion in Hegotá?</h2>
+<p class="tiny mut" style="text-align:center;margin-top:14px">Expected impact — the market's signal</p>
+<div class="impact" id="impactVal" aria-label="Expected impact minus zero point zero zero percent">+0.00%</div>
+<div class="pbar tall" style="margin-top:16px" role="img" aria-label="Conditional prices: if passes 2383.35 USDS, if fails 2383.37 USDS">
+<div class="seg v" id="segPass" style="width:50%"><b>If passes</b><span>2,383.35 USDS</span></div>
+<div class="seg l" id="segFail" style="width:50%"><b>If fails</b><span>2,383.37 USDS</span></div></div>
+<p class="small mut" style="margin-top:10px">Near-identical conditional prices mean the market currently expects ~zero impact from scheduling alone. The pair is the evidence; the delta above is the headline.</p>
+
+<h3 style="margin-top:26px">Two Worlds — one chart, two futures</h3>
+<p class="small mut">Move your pointer across the chart to reveal the alternate future through a circular window. Adjust the compare aperture, click (or press Enter) to hold the reveal, or flip the base world.</p>
+<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:12px">
+<div class="toggle" role="group" aria-label="Base world toggle">
+<button type="button" id="basePass" aria-pressed="true">If passes (base)</button>
+<button type="button" id="baseFail" aria-pressed="false" class="alt">If fails (base)</button></div>
+<label class="small mut" for="aperture">Compare aperture <span class="mono" id="apVal">25%</span></label>
+<input type="range" id="aperture" min="15" max="40" step="1" value="25" style="max-width:180px" aria-label="Compare aperture, percent of the chart's shorter side">
+<span class="badge dark" id="holdState">Reveal: following pointer</span></div>
+<div id="twWrap" tabindex="0" role="application" aria-label="Two Worlds conditional chart. Arrow keys move the reveal window; Enter holds it.">
+<canvas id="twBase" height="260"></canvas>
+<canvas id="twAlt" height="260" style="position:absolute;inset:0"></canvas>
+</div>
+<p class="tiny mut" style="margin-top:8px">Solid violet = conditional ETH price if the proposal passes · dashed grey = if it fails · same axes, same scale</p>
+</div>
+
+<div class="grid c2" style="margin-top:16px">
+<div class="card"><h3>Organisations</h3><table><thead><tr><th>Organisation</th><th class="num">Active</th><th class="num">Proposals</th></tr></thead><tbody>
+<tr><td>Gnosis DAO</td><td class="num">1</td><td class="num">6</td></tr>
+<tr><td>Kleros DAO</td><td class="num">0</td><td class="num">4</td></tr>
+<tr><td>Ethereum</td><td class="num">1</td><td class="num">1</td></tr>
+<tr><td>VeloraDAO</td><td class="num">0</td><td class="num">—</td></tr>
+<tr><td>Aave DAO</td><td class="num">0</td><td class="num">—</td></tr></tbody></table></div>
+<div class="card"><h3>Recently closed</h3><table><thead><tr><th>Proposal</th><th>Status</th><th class="num">Impact</th></tr></thead><tbody>
+<tr><td>GIP-152 · Gnosis</td><td>Awaiting resolution</td><td class="num">—</td></tr>
+<tr><td>GIP-151 · Gnosis</td><td>Awaiting resolution</td><td class="num">—</td></tr>
+<tr><td>GIP-149 · Gnosis</td><td>Resolved</td><td class="num">−2.36%</td></tr>
+<tr><td>GIP-145 · Gnosis</td><td>Resolved</td><td class="num">+1.96%</td></tr>
+<tr><td>GIP-153 · Gnosis</td><td>Resolved</td><td class="num">+0.98%</td></tr>
+<tr><td>KIP-90 · Kleros</td><td>Resolved</td><td class="num">+0.68%</td></tr>
+<tr><td>KIP-88 · Kleros</td><td>Resolved</td><td class="num">+0.91%</td></tr>
+<tr><td>KIP-86 · Kleros</td><td>Resolved</td><td class="num">+0.94%</td></tr>
+<tr><td>KIP-81 · Kleros</td><td>Resolved</td><td class="num">+99.98%</td></tr>
+</tbody></table></div></div>
+<div class="card" style="margin-top:16px"><h3>The human step stays human</h3><p class="mut" style="margin:0">When a milestone closes, the DAO votes with the market's estimate in front of it. Seer surfaces the forecast — the decision, and the responsibility for it, stay with the DAO's members.</p></div>
+</div></section>
+<footer class="site"><div class="wrap">
+<div><div class="brand" style="font-size:1.1rem"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><path fill="#7D33FF" d="M20 2 L38 20 L20 38 L13.5 31.5 L25.5 20 L13.5 8.5 Z"/><path fill="#EFE9FC" d="M20 2 L2 20 L20 38 L26.5 31.5 L14.5 20 L26.5 8.5 Z" opacity=".92"/><rect x="17.6" y="11" width="4.8" height="4.8" transform="rotate(45 20 13.4)" fill="#141223"/><rect x="17.6" y="24.2" width="4.8" height="4.8" transform="rotate(45 20 26.6)" fill="#141223"/></svg><span>seer</span></div>
+<p class="mut small" style="max-width:38ch;margin-top:10px">One Signal — one protocol, six surfaces. Every price a signal, every decision human.</p></div>
+<nav aria-label="Interfaces"><a href="../index.html">Home</a><a href="../app/">App</a><a href="../deep/">Deep</a><a href="../futarchy/">Futarchy</a><a href="../opportunity/">Opportunity</a><a href="../risk/">Risk</a></nav>
+<p class="mut tiny">Design concept for Seer — Electric Foundation system · Sample data for demonstration</p>
+</div></footer>
+<div class="toast" role="status" aria-live="polite"></div>
+<script src="../assets/app.js"></script>
+<script>
+var impact=(2383.35-2383.37)/2383.37*100;
+tweenNumber(document.getElementById('impactVal'), -1.2, impact, 900, function(v){ return (v<0?'\u2212':'+')+Math.abs(v).toFixed(2)+'%'; });
+var passS=[2290,2310,2305,2330,2352,2348,2366,2371,2362,2380,2383.35];
+var failS=[2292,2308,2318,2312,2336,2340,2331,2350,2358,2366,2383.37];
+var base='pass', reveal={x:.68,y:.4}, held=false, ap=25;
+var wrap=document.getElementById('twWrap'), cb=document.getElementById('twBase'), ca=document.getElementById('twAlt');
+function series(cv, data, alt, baseData){
+ var dpr=Math.min(devicePixelRatio||1,2), w=cv.clientWidth||700, h=260; cv.width=w*dpr; cv.height=h*dpr;
+ var c=cv.getContext('2d'); c.scale(dpr,dpr); c.clearRect(0,0,w,h);
+ var all=passS.concat(failS), min=Math.min.apply(null,all)-14, max=Math.max.apply(null,all)+14;
+ c.strokeStyle='rgba(92,92,102,.3)'; for(var i=1;i<4;i++){ var y=h*i/4; c.beginPath(); c.moveTo(0,y); c.lineTo(w,y); c.stroke(); }
+ function X(i){return 14+i*(w-28)/(data.length-1);} function Y(v){return h-16-((v-min)/(max-min))*(h-32);}
+ if(baseData){ c.beginPath(); baseData.forEach(function(v,i){ i?c.lineTo(X(i),Y(v)):c.moveTo(X(i),Y(v)); }); c.strokeStyle='rgba(142,142,153,.45)'; c.lineWidth=1.5; if(alt)c.setLineDash([5,4]); c.stroke(); c.setLineDash([]); }
+ c.beginPath(); data.forEach(function(v,i){ i?c.lineTo(X(i),Y(v)):c.moveTo(X(i),Y(v)); });
+ if(!alt){ c.lineTo(X(data.length-1),h); c.lineTo(X(0),h); c.closePath(); c.fillStyle='rgba(125,51,255,.16)'; c.fill(); c.beginPath(); data.forEach(function(v,i){ i?c.lineTo(X(i),Y(v)):c.moveTo(X(i),Y(v)); }); }
+ c.strokeStyle= alt? '#8E8E99':'#7D33FF'; c.lineWidth=2.2; if(alt)c.setLineDash([6,4]); c.stroke(); c.setLineDash([]);
+ c.fillStyle='#8E8E99'; c.font='11px "IBM Plex Mono",monospace';
+ c.fillText((alt?'IF FAILS':'IF PASSES')+' · last '+data[data.length-1].toFixed(2)+' USDS', 16, 20);
+}
+function paint(){
+ series(cb, base==='pass'?passS:failS, base!=='pass', null);
+ series(ca, base==='pass'?failS:passS, base==='pass', null);
+ clip();
+}
+function clip(){
+ var w=ca.clientWidth||700, h=260, r=Math.min(w,h)*ap/100;
+ ca.style.clipPath='circle('+r+'px at '+(reveal.x*w)+'px '+(reveal.y*h)+'px)';
+ ca.style.webkitClipPath=ca.style.clipPath;
+}
+wrap.addEventListener('pointermove',function(e){ if(held) return; var r=wrap.getBoundingClientRect(); reveal.x=(e.clientX-r.left)/r.width; reveal.y=(e.clientY-r.top)/r.height; clip(); });
+wrap.addEventListener('click',function(){ held=!held; document.getElementById('holdState').textContent=held?'Reveal: held — click to release':'Reveal: following pointer'; });
+wrap.addEventListener('keydown',function(e){
+ var step=.05;
+ if(e.key==='ArrowRight')reveal.x=Math.min(1,reveal.x+step); else if(e.key==='ArrowLeft')reveal.x=Math.max(0,reveal.x-step);
+ else if(e.key==='ArrowDown')reveal.y=Math.min(1,reveal.y+step); else if(e.key==='ArrowUp')reveal.y=Math.max(0,reveal.y-step);
+ else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); wrap.click(); return; } else return;
+ e.preventDefault(); clip();
+});
+document.getElementById('aperture').addEventListener('input',function(e){ ap=+e.target.value; document.getElementById('apVal').textContent=ap+'%'; if(!held){ held=true; document.getElementById('holdState').textContent='Reveal: held — click to release'; } clip(); });
+function setBase(b){ base=b; document.getElementById('basePass').setAttribute('aria-pressed',String(b==='pass')); document.getElementById('baseFail').setAttribute('aria-pressed',String(b==='fail')); paint(); }
+document.getElementById('basePass').addEventListener('click',function(){ setBase('pass'); });
+document.getElementById('baseFail').addEventListener('click',function(){ setBase('fail'); });
+addEventListener('resize',paint,{passive:true});
+paint();
+</script>
+</body></html>

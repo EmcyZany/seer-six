@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deep — AI Prediction Markets — Seer · One Signal</title><meta name="description" content="One Signal — a design concept for Seer's six interfaces in the Electric Foundation system.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/style.css"></head>
+<body>
+<header class="topnav"><div class="wrap">
+<a class="brand" href="../index.html"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><path fill="#7D33FF" d="M20 2 L38 20 L20 38 L13.5 31.5 L25.5 20 L13.5 8.5 Z"/><path fill="#EFE9FC" d="M20 2 L2 20 L20 38 L26.5 31.5 L14.5 20 L26.5 8.5 Z" opacity=".92"/><rect x="17.6" y="11" width="4.8" height="4.8" transform="rotate(45 20 13.4)" fill="#141223"/><rect x="17.6" y="24.2" width="4.8" height="4.8" transform="rotate(45 20 26.6)" fill="#141223"/></svg><span>seer</span></a>
+<button class="navtoggle" aria-expanded="false" aria-controls="mainnav">Menu</button>
+<nav class="navlinks" id="mainnav" aria-label="Seer interfaces"><a href="../index.html">Home</a><a href="../app/">App</a><a href="../deep/" aria-current="page">Deep</a><a href="../futarchy/">Futarchy</a><a href="../opportunity/">Opportunity</a><a href="../risk/">Risk</a></nav>
+<button class="btn sm wallet" data-wallet type="button">Connect Wallet</button>
+</div></header>
+
+<section style="padding-top:34px"><div class="wrap">
+<p class="kicker">Deep · AI Prediction Markets</p>
+<h1 id="deepTitle" style="font-size:clamp(1.8rem,4vw,2.7rem)">Deep</h1>
+<p class="mut" style="max-width:66ch">Questions with many possible outcomes — built for AI agents to trade. In Deep Funding, agents forecast how a jury of human evaluators will assess a field of 98 Ethereum repositories, giving funding teams a signal about which ones deserve closer review. Weights below are a 14-repository sample of that 98-outcome field, and they visibly sum to 100%.</p>
+<div class="card" style="margin-bottom:16px"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><b>Market weight distribution</b><span class="mono small">Total <b id="distTotal">100.0%</b></span></div>
+<div class="distbar" id="distBar" style="margin-top:12px" role="img" aria-label="Distribution bar of repository weights summing to 100 percent"></div>
+<p class="tiny mut" style="margin-top:8px">Drag any weight slider in the table — the bar re-flows and the total stays at 100%.</p></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+<label class="btn ghost sm" for="csvFile" style="cursor:pointer">Upload predictions (CSV)</label>
+<input type="file" id="csvFile" accept=".csv,text/csv" class="sr" style="position:absolute;left:-9999px" aria-label="Upload a CSV of repository weights">
+<button class="btn ghost sm" id="csvOut" type="button">Export market weights (CSV)</button>
+<span class="mut small">Collateral: sUSDS · Network: Optimism · Round 3 · Originality — sample data</span></div>
+<div class="card" style="padding:6px 6px 0;overflow-x:auto"><table aria-label="Repository weights">
+<thead><tr><th class="sortable" data-sort="name">Repository ⇕</th><th class="num sortable" data-sort="weight">Weight % ⇕</th><th style="width:170px">Adjust</th><th class="num sortable" data-sort="up">UP ⇕</th><th class="num">DOWN</th><th class="num sortable" data-sort="orig">Originality ⇕</th></tr></thead>
+<tbody id="repoRows"></tbody>
+<tfoot><tr><td><b>Total (sample field)</b></td><td class="num"><b id="tblTotal">100.0</b></td><td></td><td colspan="3" class="mut small">Full market: 98 repositories · weights sum to 1.00</td></tr></tfoot></table></div>
+<div class="grid c2" style="margin-top:16px">
+<div class="card"><h3>Create a trade wallet</h3><p class="mut">Agents trade through a dedicated contract wallet that batches hundreds of trades into a single run — hundreds of outcome positions, one execution.</p><button class="btn sm" id="walletBtn" type="button">Create a trade wallet</button></div>
+<div class="card"><h3>Resolved by humans, forecast by agents</h3><p class="mut">Agents price what they believe human evaluators will decide. The jury resolves markets through pairwise comparison of repositories — the market is a forecast of human judgement, never a replacement for it.</p></div>
+</div></div></section>
+<footer class="site"><div class="wrap">
+<div><div class="brand" style="font-size:1.1rem"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><path fill="#7D33FF" d="M20 2 L38 20 L20 38 L13.5 31.5 L25.5 20 L13.5 8.5 Z"/><path fill="#EFE9FC" d="M20 2 L2 20 L20 38 L26.5 31.5 L14.5 20 L26.5 8.5 Z" opacity=".92"/><rect x="17.6" y="11" width="4.8" height="4.8" transform="rotate(45 20 13.4)" fill="#141223"/><rect x="17.6" y="24.2" width="4.8" height="4.8" transform="rotate(45 20 26.6)" fill="#141223"/></svg><span>seer</span></div>
+<p class="mut small" style="max-width:38ch;margin-top:10px">One Signal — one protocol, six surfaces. Every price a signal, every decision human.</p></div>
+<nav aria-label="Interfaces"><a href="../index.html">Home</a><a href="../app/">App</a><a href="../deep/">Deep</a><a href="../futarchy/">Futarchy</a><a href="../opportunity/">Opportunity</a><a href="../risk/">Risk</a></nav>
+<p class="mut tiny">Design concept for Seer — Electric Foundation system · Sample data for demonstration</p>
+</div></footer>
+<div class="toast" role="status" aria-live="polite"></div>
+<script src="../assets/app.js"></script>
+<script>
+var REPOS=[
+ ['go-ethereum',11.8,54,0.62],['nethermind',8.8,49,0.55],['lighthouse',8.2,57,0.71],['prysm',7.9,46,0.48],
+ ['execution-specs',7.4,52,0.66],['reth',7.1,61,0.74],['solidity',6.9,58,0.69],['besu',6.3,44,0.44],
+ ['foundry',6.2,63,0.77],['erigon',5.7,47,0.51],['ethers.js',5.4,42,0.40],['consensus-specs',9.6,59,0.72],
+ ['hardhat',4.5,39,0.36],['web3.py',4.2,41,0.38]].map(function(r){return {name:r[0],weight:r[1],up:r[2],orig:r[3]};});
+var SEG=['#7D33FF','#6C2BD9','#EFE9FC','#8E8E99','#5C5C66','#67676F'];
+var sortKey=null, sortDir=1;
+function total(){ return REPOS.reduce(function(s,r){return s+r.weight;},0); }
+function render(){
+ var rows=REPOS.slice(); if(sortKey){ rows.sort(function(a,b){ var x=a[sortKey],y=b[sortKey]; return (typeof x==='string'? x.localeCompare(y) : x-y)*sortDir; }); }
+ document.getElementById('repoRows').innerHTML=rows.map(function(r,i){
+   var idx=REPOS.indexOf(r);
+   return '<tr class="rowin" style="animation-delay:'+(i*30)+'ms"><td><b>'+r.name+'</b></td>'
+   +'<td class="num" data-w="'+idx+'">'+r.weight.toFixed(1)+'</td>'
+   +'<td><input type="range" min="0.5" max="20" step="0.1" value="'+r.weight+'" data-slider="'+idx+'" aria-label="Adjust weight for '+r.name+'"></td>'
+   +'<td class="num">'+r.up.toFixed(0)+'</td><td class="num">'+(100-r.up).toFixed(0)+'</td><td class="num">'+r.orig.toFixed(2)+'</td></tr>'; }).join('');
+ document.querySelectorAll('[data-slider]').forEach(function(sl){ sl.addEventListener('input',function(){ adjust(+sl.dataset.slider, parseFloat(sl.value)); }); });
+ paintDist();
+}
+function paintDist(){
+ document.getElementById('distBar').innerHTML=REPOS.map(function(r,i){ return '<div class="seg" title="'+r.name+' '+r.weight.toFixed(1)+'%" style="width:'+r.weight+'%;background:'+SEG[i%SEG.length]+'"></div>'; }).join('');
+ var t=total().toFixed(1)+'%'; document.getElementById('distTotal').textContent=t; document.getElementById('tblTotal').textContent=total().toFixed(1);
+}
+function adjust(idx, val){
+ var old=REPOS[idx].weight, others=total()-old; if(others<=0) return;
+ var factor=(100-val)/others; REPOS.forEach(function(r,i){ if(i!==idx) r.weight=Math.max(.1, r.weight*factor); });
+ REPOS[idx].weight=val;
+ var drift=100-total(); REPOS[(idx+1)%REPOS.length].weight+=drift;
+ document.querySelectorAll('[data-slider]').forEach(function(sl){ sl.value=REPOS[+sl.dataset.slider].weight; });
+ document.querySelectorAll('[data-w]').forEach(function(td){ var r=REPOS[+td.dataset.w]; tweenNumber(td, parseFloat(td.textContent)||0, r.weight, 400, function(v){return v.toFixed(1);}); });
+ paintDist();
+}
+document.querySelectorAll('[data-sort]').forEach(function(th){ th.addEventListener('click',function(){ var k=th.dataset.sort; if(sortKey===k) sortDir*=-1; else {sortKey=k; sortDir=1;} render(); }); });
+document.getElementById('csvOut').addEventListener('click',function(){
+ var csv='repository,weight\n'+REPOS.map(function(r){return r.name+','+r.weight.toFixed(3);}).join('\n'); downloadText('deep-market-weights.csv', csv); toast('Weights exported — they sum to '+total().toFixed(1)+'%.');
+});
+document.getElementById('csvFile').addEventListener('change',function(e){
+ var f=e.target.files[0]; if(!f) return; var rd=new FileReader();
+ rd.onload=function(){ var applied=0;
+   String(rd.result).split(/\r?\n/).slice(1).forEach(function(line){ var p=line.split(','); if(p.length<2) return;
+     var name=p[0].trim().toLowerCase(), w=parseFloat(p[1]); if(!isFinite(w)) return;
+     REPOS.forEach(function(r){ if(r.name.toLowerCase()===name){ r.weight=Math.max(.1,w); applied++; } }); });
+   if(applied){ var t=total(); REPOS.forEach(function(r){ r.weight=r.weight*100/t; }); render(); toast('CSV applied to '+applied+' repositories — re-normalised to 100%.'); }
+   else toast('No matching repository names found in that CSV.'); };
+ rd.readAsText(f);
+});
+document.getElementById('walletBtn').addEventListener('click',function(){ toast('Demo only — trade wallet creation is a concept action here.'); });
+scramble(document.getElementById('deepTitle'));
+render();
+</script>
+</body></html>
