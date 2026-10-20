@@ -158,3 +158,57 @@ input[type="file"]{color:var(--grey-lt);font-size:.88rem}
 /* Desktop-experience note (small screens, injected by app.js) */
 .desktopnote{position:sticky;top:0;z-index:80;background:#7D33FF;color:#fff;font:500 13px/1.5 Inter,system-ui,sans-serif;padding:10px 46px 10px 16px;text-align:center}
 .desktopnote button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:0;color:#fff;font-size:15px;line-height:1;cursor:pointer;padding:8px}
+
+/* ---------- theme toggle ---------- */
+.themetoggle{margin-left:10px;flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:var(--surface);border:1px solid var(--border);color:var(--lav);cursor:pointer;padding:0}
+.themetoggle:hover{color:var(--white);border-color:var(--grey-lt)}
+.themetoggle .ic-moon{display:none}
+html[data-theme="light"] .themetoggle{color:var(--violet-deep)}
+html[data-theme="light"] .themetoggle:hover{color:var(--night);border-color:var(--grey)}
+html[data-theme="light"] .themetoggle .ic-sun{display:none}
+html[data-theme="light"] .themetoggle .ic-moon{display:block}
+
+/* ---------- light theme (EF kit Light Mode: white / EFE9FC surfaces, #141223 text, #7D33FF accents) ---------- */
+html[data-theme="light"]{background:var(--lav)}
+html[data-theme="light"] body{background:var(--lav);color:var(--night)}
+html[data-theme="light"]{--surface:#FFFFFF;--border:#8E8E99;--panel:rgba(255,255,255,.94)}
+html[data-theme="light"] .topnav{background:rgba(255,255,255,.92)}
+html[data-theme="light"] .navlinks a{color:#5C5C66}
+html[data-theme="light"] .navlinks a:hover{color:var(--night);background:var(--lav)}
+html[data-theme="light"] .navlinks a[aria-current="page"]{color:var(--night);background:var(--lav)}
+html[data-theme="light"] .navtoggle{color:var(--night)}
+html[data-theme="light"] footer.site nav a{color:#5C5C66}
+html[data-theme="light"] footer.site nav a:hover{color:var(--night)}
+html[data-theme="light"] .mut{color:#5C5C66}
+html[data-theme="light"] .kicker{color:var(--violet-deep)}
+html[data-theme="light"] .hero .tag{color:#5C5C66}
+html[data-theme="light"] .stat{background:#FFFFFF}
+html[data-theme="light"] .stat .l{color:#5C5C66}
+html[data-theme="light"] .mkt{color:var(--night)}
+html[data-theme="light"] .chip{color:#5C5C66}
+html[data-theme="light"] .chip:hover{color:var(--night)}
+html[data-theme="light"] .badge.dark{color:#5C5C66}
+html[data-theme="light"] .btn.ghost{color:var(--violet-deep)}
+html[data-theme="light"] input[type="search"],html[data-theme="light"] input[type="text"],html[data-theme="light"] input[type="number"],html[data-theme="light"] select{background:#FFFFFF;color:var(--night)}
+html[data-theme="light"] input[type="file"]{color:#5C5C66}
+html[data-theme="light"] th{color:#5C5C66}
+html[data-theme="light"] th.sortable:hover{color:var(--night)}
+html[data-theme="light"] tbody tr:hover{background:rgba(20,18,35,.045)}
+html[data-theme="light"] .diag{background-image:repeating-linear-gradient(45deg,rgba(20,18,35,.05) 0 1px,transparent 1px 14px)}
+html[data-theme="light"] .glass{background:rgba(255,255,255,.88)}
+html[data-theme="light"] .yn .n{background:#FFFFFF;color:#5C5C66}
+html[data-theme="light"] .pbar .seg.g2{color:#5C5C66}
+html[data-theme="light"] .toggle button{color:#5C5C66}
+html[data-theme="light"] .toggle button[aria-pressed="true"]{color:#FFFFFF}
+html[data-theme="light"] .toggle button[aria-pressed="true"].alt{background:var(--lav);color:var(--violet-deep)}
+html[data-theme="light"] .chip[aria-pressed="true"]{color:#FFFFFF}
+html[data-theme="light"] :focus-visible{outline-color:var(--violet)}
+html[data-theme="light"] svg path[fill="#EFE9FC"]{fill:#6C2BD9}
+/* inline-styled lavender/white text sits on light surfaces in light mode — deepen it */
+html[data-theme="light"] [style*="color:var(--lav)"]{color:var(--violet-deep)!important}
+html[data-theme="light"] [style*="color:var(--white)"]{color:var(--night)!important}
+/* bet slip is an inline dark panel (background:var(--night)) — flip it to a lavender card in light mode */
+html[data-theme="light"] .slip{background:var(--lav)!important}
+@media(max-width:640px){
+  html[data-theme="light"] .navlinks{background:#FFFFFF}
+}
