@@ -154,3 +154,7 @@ input[type="file"]{color:var(--grey-lt);font-size:.88rem}
   *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important;scroll-behavior:auto!important}
   .marquee .track{animation:none}
 }
+
+/* Desktop-experience note (small screens, injected by app.js) */
+.desktopnote{position:sticky;top:0;z-index:80;background:#7D33FF;color:#fff;font:500 13px/1.5 Inter,system-ui,sans-serif;padding:10px 46px 10px 16px;text-align:center}
+.desktopnote button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:0;color:#fff;font-size:15px;line-height:1;cursor:pointer;padding:8px}
