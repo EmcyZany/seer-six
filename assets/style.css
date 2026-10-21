@@ -24,6 +24,12 @@ section{padding:56px 0}
 .topnav{position:sticky;top:0;z-index:60;background:rgba(20,18,35,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
 .topnav .wrap{display:flex;align-items:center;gap:18px;min-height:64px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--font-d);font-weight:700;font-size:1.35rem;letter-spacing:-.02em}
+.brand .crow{width:32px;height:32px;flex:none}
+.brand .wordmark{letter-spacing:.3em;font-size:1.12rem;padding-left:.1em}
+.branddiv{width:1px;height:24px;background:var(--grey);opacity:.45;flex:none}
+.edition{display:flex;align-items:center;gap:8px;text-decoration:none;font-family:var(--font-m);font-size:.7rem;letter-spacing:.24em;color:var(--grey-lt);flex:none}
+.edition svg{flex:none}
+@media (max-width:560px){.edition span{display:none}.brand .wordmark{letter-spacing:.18em}}
 .brand svg{flex:none}
 .navlinks{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
 .navlinks a{text-decoration:none;padding:8px 12px;border-radius:9px;color:var(--grey-lt);font-size:.92rem;font-weight:500}
